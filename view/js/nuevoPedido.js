@@ -209,11 +209,6 @@ $(document).ready(function(){
 	$(document).on("click",".elimArticulo",function(event){
 		event.preventDefault();
 		$(this).parents("tr").remove();
-		if($("#tablaArticulos .articulo").length == 0)
-		{
-			if($("#botonera").hasClass("hidden")==false)
-				$("#botonera").addClass("hidden");
-		}
 	});
 	
 	$(document).on("keyup paste","#tablaArticulos .articulo .cantidad",function(){
@@ -236,11 +231,12 @@ $(document).ready(function(){
 		guardarPedido();
 	});
 	
+	// --- Editar un pedido
 	$(document).on("click","#listado-subpedidos a",function(){
 		var idSubPedido = $(this).attr("id").split("-")[1];
 		editarSubPedido(idSubPedido);
 	});
-	
+	// --- Fin Editar un pedido
 	$(document).on("click","a#nuevoSubPedido",function(){
 		delete info["subpedido"];
 		$("#lista-articulos").removeClass("hidden");
@@ -558,6 +554,7 @@ function addArticuloLista(articulo,idSubPedido){
 
 
 function editarSubPedido(idSubpedido){
+	resetListaArticulos();
 	$("#busqueda-articulo").removeClass("hidden");
 	$("#lista-articulos").removeClass("hidden");
 	obtenerArticulosSubpedido(idSubpedido);
@@ -608,6 +605,9 @@ function resetEntrega(){
 	$("#descr").val('');
 }
 
+function resetListaArticulos(){
+	$("#tablaArticulos tbody tr").remove();
+}
 
 
 
