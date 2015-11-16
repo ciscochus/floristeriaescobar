@@ -109,7 +109,7 @@
       <div id="sidebar" class="col-md-3">
          <!-- panels -->
           <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-link"></i> Enlaces importantes</div>
+            <div class="panel-heading"><i class="fa fa-link"></i> Enlaces importantes!!!!!!!!!</div>
             <div class="panel-body panel-links">
               <!-- links -->
                <a id="inicio" href="#"><i class="fa fa-code"></i> Inicio</a>
