@@ -517,8 +517,14 @@ function guardarPedido(){
 /* Cargar multiples subpedidos */
 //para los pedidos de tipo 2 y 3 que pueden tener varios subpedidos
 function mostrarSubpedidos(subpedido){
+	if(subpedido.diaEntrega == null){
+		var fechaEntrega = "Fecha de entrega no especificada";
+	}
+	else{
+		var fechaEntrega = subpedido.diaEntrega;
+	}
 	var salida = "<div id='subpedido-"+subpedido.idSubPedido+"' class='panel-heading'>";
-		salida +="<h2 class='verde panel-title'>#"+subpedido.idSubPedido+"<a href='#' id='edit-"+subpedido.idSubPedido+"'>Editar</a></h2>";
+		salida +="<h2 class='verde panel-title'>"+fechaEntrega+" - "+subpedido.numOrden+" <a href='#' id='edit-"+subpedido.idSubPedido+"'>Editar</a></h2>";
 		salida +="<table><thead><tr><th>Articulo</th><th>Cantidad</th></tr></thead><tbody></tbody></table>";
 		salida +="</div>";
 		
