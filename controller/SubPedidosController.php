@@ -61,7 +61,7 @@ if(isset($_POST['accion'])){
          $tipo = $_POST['tipo'];
          $subpedidoDao = new SubpedidoDao();
          $subpedidos = array();
-         $subpedidos = $subpedidoDao->getPedidoBy("idPedido", $idPedido);
+         $subpedidos = $subpedidoDao->getSubpedidoBy("idPedido", $idPedido);
                
         if($subpedidos != null){
             $data= array();   
@@ -140,6 +140,33 @@ if(isset($_POST['accion'])){
                 header("Content-Type: application/json", true);
                 echo(json_encode(array('mensaje' => "false")));
              }
+     }
+     elseif ($accion == 'getSubpedido') {
+	   $idSubPedido = null;
+       if(isset($_POST['idSubPedido']) && $_POST['idSubPedido']!=""){
+            $idSubPedido  = $_POST['idSubPedido'];
+       }
+       
+       if($idSubPedido != null){
+           $subpedidoDao = new SubpedidoDao();
+           $subpedidos = $subpedidoDao->getSubpedidoBy("idSubPedido", $idSubPedido);
+           if($subpedidos != null){
+                $data= array();   
+                foreach ($subpedidos as $x) {
+                    $data[] = $x->toJSON();
+                }
+                if(count($data)>0)
+                {
+                    header("Content-Type: application/json", true);
+                    echo(json_encode(array('mensaje' => "true", 'subpedidos' => $data)));
+                    return null;
+                }
+            }
+            
+            header("Content-Type: application/json", true);
+            echo(json_encode(array('mensaje' => "false")));
+            return null;
+       }
      }
     
     

@@ -563,7 +563,9 @@ function editarSubPedido(idSubpedido){
 	resetListaArticulos();
 	$("#busqueda-articulo").removeClass("hidden");
 	$("#lista-articulos").removeClass("hidden");
+	$("#panel-entrega").removeClass("hidden");
 	obtenerArticulosSubpedido(idSubpedido);
+	loadEntrega(idSubpedido);
 	info["subpedido"] = idSubpedido;
 }
 
@@ -615,7 +617,37 @@ function resetListaArticulos(){
 	$("#tablaArticulos tbody tr").remove();
 }
 
-
+function loadEntrega(idSubpedido){
+ 	 	
+ 	$.ajax({
+          url: "../controller/SubPedidosController.php",
+          type: "POST",
+          dataType: "json",
+          data: {
+          	accion:"getSubpedido",
+            idSubPedido: idSubpedido,
+          },
+          success: function( data ) {
+          	if(data.mensaje=="true"){
+          		subpedido = data.subpedidos[0];
+          		$("#ordLlegada").val(subpedido.numOrden);
+          		$("#fecEntrega").val(subpedido.diaEntrega);
+          		$("#descr").val(subpedido.descripcion);
+          		$(".estadoAlmacen select").prop("selectedIndex", (subpedido.estadoAlmacen-1));
+          		if(subpedido.tiesto == 1){
+          			$("#tiesto").prop("checked", true);
+          		}
+          		else{
+          			$("#tiesto").prop("checked", false);
+          		}
+          	}
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) { 
+	        console.log("ERROR: "+XMLHttpRequest.responseText); 
+	    }  
+        });
+ 	return false;
+}
 
 
 

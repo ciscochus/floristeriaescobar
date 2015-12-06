@@ -11,7 +11,7 @@ class SubpedidoDao extends Dao{
         parent::__construct($table);
     }
     
-    public function getPedidoBy($column,$value) {
+    public function getSubpedidoBy($column,$value) {
         $resultSet = $this->getBy($column, $value);
         $listaSubpedidos=array();
         
