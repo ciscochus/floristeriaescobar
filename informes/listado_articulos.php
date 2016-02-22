@@ -4,7 +4,7 @@
 <?php
 require_once("../controller/ArticulosController.php");
 
-//Creamos el objeto cliente
+//Creamos el objeto artículo
     $artControlador = new ArticulosController();
     $allArticulos = $artControlador->listarArtInformes();
 

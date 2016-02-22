@@ -467,7 +467,7 @@
                 </div>
              </div>
              <div class="modal-footer">
-                <a href="#" id="imprInforme" target="_blank" class="btn btn-success">Imprimir informe</a>
+                <a href="#" id="imprInforme" class="btn btn-success">Imprimir informe</a>
                 <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
              </div>
          </div>
