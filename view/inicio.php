@@ -42,7 +42,6 @@
   </head>
   <body>
 
-  <div id="loading"></div>
 
   <div id="header" class="col-md-12 text-center">
       <i class="fa fa-cube fa-2x"></i>
@@ -296,8 +295,28 @@
        </div>
      </div>
   </div>
+  <!-- Modal de prueba -->
+  
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
 <!--Modal para editar un cliente-->
-  <div id="editarCliente" class="modal fade">
+  <div id="editarCliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog">
         <div class="modal-content">
            <div class="modal-header">
@@ -481,18 +500,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
     <script src="js/nuevoPedido.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <!--  Spiner -->
-    <script src="js/spin.js"></script>
     <!-- dataTable -->
     <script src="js/datatables.js"></script>
     
-    <!-- Sparkline -->
-    <script src="js/jquery.sparkline.min.js"></script>
-    
     <!-- Page Functions -->
-    <script src="js/functions.js"></script>
     <script src="js/frontController.js"></script>
     <!--Bootstrap modal-->
     <script src="js/bootstrap-modal.js"></script>

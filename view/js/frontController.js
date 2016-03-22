@@ -99,6 +99,7 @@ $(document).ready(function() {
 
 	//editar clientes
 	$(document).on("click", ".editClientes", function(event) {
+		alert("editCliente");
 		//limpiamos el formulario por si mantiene algun valor residual
 		$('#editClienteForm').trigger("reset");
 		//inicializamos el formulario del modal con los valores del cliente

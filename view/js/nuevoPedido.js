@@ -146,13 +146,14 @@ $(document).ready(function(){
 	});
 	
 	
-	$(document).on("click",function(){
-		if($(this).attr("id") != "buscarCliente" || $(this).attr("id") != "busqueda-articulo"){
-			$("#buscarCliente #resultados").html("");
-			$("#busqueda-articulo #articulos-resultados").html("");
-		}
-			
-	});
+	// $(document).on("click",function(){
+		// alert("subnormal");
+		// if($(this).attr("id") != "buscarCliente" || $(this).attr("id") != "busqueda-articulo"){
+			// $("#buscarCliente #resultados").html("");
+			// $("#busqueda-articulo #articulos-resultados").html("");
+		// }
+// 			
+	// });
 	
 	$(document).on("change",'#tipoPedido #tipo',function(){
 		resetEntrega();

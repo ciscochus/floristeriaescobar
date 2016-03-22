@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$("#nuevoArticulo .guardar").on("click", function() {
+		
 		//recogemos los valores del formulario
 		nombre = $("#nombreArticulo").val();
 		abreviatura = $("#abreviaturaArticulo").val();
@@ -18,7 +19,7 @@ $(document).ready(function() {
 			});
 			
 			request.done(function(result){
-			$('#nuevoArticulo .closeModal').click();
+			$("#nuevoArticulo .closeModal").click();
 			$('#articulos').click();
 			notif({
 				msg: "El articulo ha sido creado correctamente.",
@@ -28,7 +29,7 @@ $(document).ready(function() {
 		});
 		request.fail(function(result){
 			notif({
-				msg: "Se ha `producido un error.",
+				msg: "Se ha producido un error.",
 				type: "error",
 				position: "center"
 			});
