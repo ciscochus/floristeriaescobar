@@ -23,7 +23,7 @@ Jesus Herrera - jesuxherrera@jhcodes.com
   position: relative;
 }
 
- #notifications>li>a>{
+ #notifications>li>a{
   width: 100%;
   float: left;
   position: relative;
