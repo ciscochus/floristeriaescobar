@@ -8,6 +8,7 @@ class Usuario{
     private $name;
     private $password;
     private $email;
+    private $activacion;
 
     public function __construct() {
         
@@ -43,6 +44,14 @@ class Usuario{
 
     public function setPassword($password) {
         $this->password = $password;
+    }
+    
+    public function getActivacion(){
+        return $this->activacion;
+    }
+    
+    public function setActivacion($activacion){
+        $this->activacion = $activacion;
     }
 
     public function save(){

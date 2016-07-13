@@ -33,6 +33,11 @@ class UsuariosController extends ControladorBase{
             $usuario->setName($_POST["name"]);
             $usuario->setPassword(sha1($_POST["password"]));
             $usuario->setEmail($_POST["email"]);
+            
+            //creamos el codigo de activacion
+            $codigo = $this->generateRandomString();
+            $usuario->setActivacion($codigo);
+            
             $save=$usuario->save();
         }
         $this->redirect("Usuarios", "index");
@@ -60,5 +65,10 @@ class UsuariosController extends ControladorBase{
         var_dump($usu);
     }
 */
+
+    public function generateRandomString() {
+        $length = 15;
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+    }
 }
 ?>

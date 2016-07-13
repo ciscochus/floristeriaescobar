@@ -16,7 +16,7 @@ $(document).ready(function() {
 			//$("#msgError").html(result);
 			$("#newUser .cerrarModal").click();
 			notif({
-				msg: "El usuario ha sido creado correctamente.",
+				msg: "El usuario ha sido creado correctamente. Se ha enviado un correo de activación.",
 				type: "success",
 				position: "center"
 			});

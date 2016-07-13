@@ -46,7 +46,8 @@ class UsuarioDao extends Dao{
         $b = $user->getName();
         $c = $user->getPassword();
         $d = $user->getEmail();
-        $q="INSERT INTO usuarios (username,name,password,email) VALUES('$a','$b','$c','$d')";
+        $e = $user->getActivacion();
+        $q="INSERT INTO usuarios (username,name,password,email,validacion) VALUES('$a','$b','$c','$d','$e')";
         
         $query=$this->executeQuery($q);
         return $query;
