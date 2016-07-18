@@ -78,52 +78,7 @@ h3 {color:#245D92; }
 
                 </form>
                <br>
-               <p style="text-align:center;"><a data-toggle="modal" href="#newUser">¿Nuevo Usuario? Registrate!</a></p>
-                 <div id="newUser" class="modal fade">
-                    <div class="modal-dialog">
-                       <div class="modal-content">
-                          <div class="modal-header">
-                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                             ×
-                             </button>
-                             <h3>Nuevo Usuario</h3>
-                             <p class="textoModal">Inserte un nuevo usuario.</p>
-                          </div>
-                            <div class="modal-body">
-                                <form id="nuevoUsuario" class="form form-signup" role="form" method="post">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Nombre usuario:</span>
-                                        <input type="text" class="form-control" name="newNombre" id="newNombre" placeholder="Nombre usuario" required/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Usuario:</span>
-                                        <input type="text" class="form-control" name="newUsername" id="newUsername" placeholder="Usuario" required/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Contraseña: </span>
-                                        <input type="password" id="newPass" name="newPass" class="form-control" placeholder="Contrase&ntilde;a" required />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">e-Mail: </span>
-                                        <input type="email" id="newEmail" name="newEmail" class="form-control" placeholder="e-Mail" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                               <input id="submitLogin" type="submit" name="submitLogin" value="Guardar usuario"  class="btn btn-success">
-                               <a href="#" data-dismiss="modal" class="btn cerrarModal">Cerrar</a>
-                            </div>
-                        </form>
-                    	</div>
-                    </div>
-                  </div>
+               
                <p style="text-align:center;"><a data-toggle="modal" href="#pass">¿Has olvidado tu contraseña?</a></p>
                <div id="pass" class="modal fade">
                   <div class="modal-dialog">
@@ -180,7 +135,6 @@ h3 {color:#245D92; }
     <script src="view/js/bootstrap.min.js"></script>
     <script src="view/js/bootstrap-modal.js"></script>
     <script src="view/js/login.js"></script>
-    <script src="view/js/usuario.js"></script>
 
   </body>
 </html>

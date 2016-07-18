@@ -89,11 +89,11 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Configuración<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                    <li><a data-toggle="modal" href="#cambiosPass">Cambiar contraseña</a></li>
-                    <!--<li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>-->
-                  <li class="divider"></li>
-                  <li><a href="logout.php">Cerrar Sesión</a></li>
+                <li><a data-toggle="modal" href="#cambiosPass">Cambiar contraseña</a></li>
+                <li class="divider"></li>
+                <li><a data-toggle="modal" href="#newUser">Nuevo usuario</a></li>
+                <li class="divider"></li>
+                <li><a href="logout.php">Cerrar Sesión</a></li>
             </ul>
         </li>
       </ul>
@@ -165,6 +165,54 @@
       </div>
     </div>
   </div>
+  <!-- Modal para nuevo usuario -->
+  <div id="newUser" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                 ×
+                 </button>
+                 <h3>Nuevo Usuario</h3>
+                 <p class="textoModal">Inserte un nuevo usuario.</p>
+              </div>
+                <div class="modal-body">
+                    <form id="nuevoUsuario" class="form form-signup" role="form" method="post">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nombre usuario:</span>
+                            <input type="text" class="form-control" name="newNombre" id="newNombre" placeholder="Nombre usuario" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Usuario:</span>
+                            <input type="text" class="form-control" name="newUsername" id="newUsername" placeholder="Usuario" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Contraseña: </span>
+                            <input type="password" id="newPass" name="newPass" class="form-control" placeholder="Contraseña" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">e-Mail: </span>
+                            <input type="email" id="newEmail" name="newEmail" class="form-control" placeholder="e-Mail" required="">
+                        </div>
+                    </div>
+                
+                    <div class="modal-footer">
+                       <input id="submitLogin" type="submit" name="submitLogin" value="Guardar usuario" class="btn btn-success">
+                       <a href="#" data-dismiss="modal" class="btn cerrarModal">Cerrar</a>
+                    </div>
+                </form></div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- /Modal para nuevo usuario -->
 
   <!--Modal para un cambiar la contraseña-->
   <div id="cambiosPass" class="modal fade">
@@ -506,12 +554,14 @@
     <!-- Page Functions -->
     <script src="js/frontController.js"></script>
     <!--Bootstrap modal-->
-    <script src="js/bootstrap-modal.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/cliente.js"></script>
     <script src="js/articulo.js"></script>
     <script src="js/informes.js"></script>
     <!-- bootbox -->
     <script type="text/javascript" src="js/bootbox.js"></script>
+    
+    <script src="js/usuario.js"></script>
     
     <div id="script"></div>
 

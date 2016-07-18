@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 	
 		var request = $.ajax({
-			url: "view/cambiosUser.php",
+			url: "cambiosUser.php",
 			method: "POST",
 			data: { username: usuario, name: nombre, password: pass, mail: email, Submit: "ok"}
 		});
