@@ -106,5 +106,32 @@ class ClienteDao extends Dao{
         }
         return $resultSet;
     }
+    
+    public function listarPedidoSueltas (){
+        $sentencia = "SELECT c.idCliente, CONCAT(c.nombre, ' ', c.apellido_1, ' ', c.apellido_2) nombre, a.abreviatura, SUM(ca.cantidadArticulo) cantidadArticulo 
+FROM pedido p, subpedido s, compraarticulo ca, articulo a, cliente c
+WHERE c.idCliente = p.idCliente AND p.idPedido = s.idPedido AND s.idSubPedido = ca.idSubPedido and ca.idArticulo = a.idArticulo AND s.tipoEncargo = 1
+GROUP BY c.idCliente, c.nombre, c.apellido_1, c.apellido_2, a.abreviatura
+ORDER BY c.idCliente";
+        $query=$this->executeQuery($sentencia);
+        $resultSet = array();
+        $listaPediSueltas = array();
+        
+        if ($query){
+            while ($row = $query->fetch_object()) {
+                $resultSet[]=$row;           
+            }
+        }
+        
+        foreach ($resultSet as $item){
+            //Aquí es donde me ralle
+          /*  $x = new informePedido();
+            $x->
+            $listaPediSueltas[]=$x;*/
+        }
+        
+        return $query;     
+    }
 }
+
 ?>

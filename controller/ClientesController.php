@@ -86,6 +86,15 @@ class ClientesController extends ControladorBase{
         $cli=$clientes->getUnCliente($idCliente);
         var_dump($cli);
     }
+    
+    public function listadoClientesSueltas (){
+        $clientes = new ClienteDao();
+        
+        $allPedidosSueltas = array();
+        $allPedidosSueltas = $clientes->listarPedidoSueltas();
+        
+        return ($allPedidosSueltas);
+    }
 
 }
 

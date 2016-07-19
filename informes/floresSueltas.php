@@ -1,13 +1,11 @@
 <?php
-    require '../core/Security.php';
-?>
-<?php
-require_once("../controller/ClientesController.php");
+    require('../core/Security.php');
+    require_once("../controller/ClientesController.php");
 
 
-//Creamos el objeto cliente
+//Creamos el objeto clienteListado
     $cliControlador = new ClientesController;
-    $allClientes = $cliControlador->listarInfClientes();
+    $allClientes = $cliControlador->listadoClientesSueltas();
 
    $content = "<page>";
     $content = $content."<html><body><h1>Pedidos 'Flores Sueltas' - Flores Escobar</h1><br>";
@@ -34,10 +32,11 @@ require_once("../controller/ClientesController.php");
     </tr>";
 
     $count = 1;
-   foreach ($allClientes as $item) {
+    //Hay que modificar para según lo que hagamos con clienteDao la función sería una u otra
+    foreach ($allClientes as $item){
         $content = $content."<tr>";
         $content = $content."<td align='right'>".$count."&nbsp;</td>";
-        $content = $content."<td>&nbsp;".$item->getApellido_1()."&nbsp;".$item->getApellido_2().", &nbsp;".$item->getNombre()."</td>";
+        $content = $content."<td>&nbsp;".$item->getNombre()."</td>";
         $content = $content."<td>&nbsp; </td>";
         $content = $content."<td>&nbsp; </td>";
         $content = $content."<td>&nbsp; </td>";
@@ -57,6 +56,7 @@ require_once("../controller/ClientesController.php");
         $content = $content."</tr>";
         $count++;
     }
+
 
     $content = $content."</table></body></html></page>";
 
