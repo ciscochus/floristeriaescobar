@@ -5,32 +5,58 @@
 require_once("../controller/ClientesController.php");
 
 
-//Creamos el objeto clienteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+//Creamos el objeto cliente
     $cliControlador = new ClientesController;
     $allClientes = $cliControlador->listarInfClientes();
 
-   $content = "<page>";
-    $content = $content."<html><body><h1>Pedidos 'Centros' para fecha:  - Flores Escobar</h1><br>";
+    $fechaInsertada = '20/07/2016';    //HAy que pasarle la fecha seleccionada en la pantalla y por la que se realiza la búsqueda 
+    
+    $content = '<page><html>';
+    $content = $content."<body>";
+    $content = $content."<h1>Centros para: ".$fechaInsertada."  - Flores Escobar</h1><br>";
     $content = $content."<table border='1'>
-    <tr>
-        <th widt='40'>&nbsp; Número&nbsp;</th>
-        <th width='500'>&nbsp; Apellidos</th>
-        <th width='250'>&nbsp; Nombre</th>
-        <th width='150'>&nbsp; Telefono</th>
-    </tr>";
-
-    $count = 1;
-   foreach ($allClientes as $item) {
-        $content = $content."<tr>";
-        $content = $content."<td align='right'>".$count."&nbsp;</td>";
-        $content = $content."<td>&nbsp;".$item->getApellido_1()."&nbsp;".$item->getApellido_2()."</td>";
-        $content = $content."<td>&nbsp;".$item->getNombre()."</td>";
-        $content = $content."<td>&nbsp;".$item->getTelefono()."</td>";
-        $content = $content."</tr>";
-        $count++;
+    <tr>";
+    
+    for ($count=1; $count<3; $count++){ //Sería 4 pedidos por hoja
+ 
+        $content = $content."<td width='425'>
+            <div>Cliente.............. </div> 
+            <div><strong>Num Orden: </strong></div>
+            <br/>
+            <div>Artículos</div>
+            <table border='1'> 
+            	<tr id='texto-uno-center'>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            		<th width='50'>MRB</th>
+            	</tr>
+            	<tr>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            		<td width='50'>23</td>
+            	</tr>
+            </table>
+            <br/>
+            <div>Descripción: <br/>
+                    <textarea rows='5' cols='55'>Texto Observaciones</textarea>
+        	</div>
+        	<br/>
+                <div>¿Tiene tiesto? </div>
+        </td>";       
+        
     }
-
-    $content = $content."</table></body></html></page>";
+    
+    $content = $content."</tr></table></body></html></page>";
 
     ob_end_clean();
     require_once('../view/lib/html2pdf/html2pdf.class.php');
