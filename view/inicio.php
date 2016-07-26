@@ -116,11 +116,6 @@
                <a id="articulos" href="#nothing"<i class="fa fa-code"></i> Articulos</a>
                <a id="busPedidos" href="#"><i class="fa fa-code"></i> Buscar Pedido</a>
                <a id="verStock" href="#"><i class="fa fa-code"></i> Ver Stock</a>
-<!--               <a href=""><i class="fa fa-code"></i> Example</a>
-               <a href=""><i class="fa fa-code"></i> Example</a>
-               <a href=""><i class="fa fa-code"></i> Example</a>
-               <a href=""><i class="fa fa-code"></i> Example</a>
-               <a href=""><i class="fa fa-code"></i> Example</a>-->
               <!-- links -->
             </div>
           </div>

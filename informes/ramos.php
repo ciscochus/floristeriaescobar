@@ -7,7 +7,10 @@ require_once("../controller/ClientesController.php");
 
 //Creamos el objeto cliente
     $cliControlador = new ClientesController;
-    $allClientes = $cliControlador->listarInfClientes();
+    //$allPedidos = $cliControlador->listarInfClientes();
+
+    //Es para probar, esto hay que quitarlo por lo que devuelva la función
+    $allPedidos = array(cliente1,cliente2,cliente3,cliente4,cliente5,cliente6);
 
    $fechaInsertada = '20/07/2016';    //HAy que pasarle la fecha seleccionada en la pantalla y por la que se realiza la búsqueda 
     
@@ -15,44 +18,33 @@ require_once("../controller/ClientesController.php");
     $content = $content."<body>";
     $content = $content."<h1>Ramos para: ".$fechaInsertada."  - Flores Escobar</h1><br>";
     $content = $content."<table border='1'>
-    <tr>";
+    ";
     
-    for ($count=1; $count<3; $count++){ //Sería 4 pedidos por hoja
- 
-        $content = $content."<td width='350'>
+    foreach ($allPedidos as $item) {
+        
+        $content = $content."<tr><td>
+            <div><strong>Num Orden: </strong></div> <!--Quiero ponerlo con css pero me tengo que pelear con la librería-->
             <div>Cliente.............. </div> 
-            <div><strong>Num Orden: </strong></div>
             <br/>
             <div>Artículos</div>
-            <table border='1'> 
-            	<tr id='texto-uno-center'>
-            		<th width='50'>MRB</th>
-            		<th width='50'>MRB</th>
-            		<th width='50'>MRB</th>
-            		<th width='50'>MRB</th>
-            		<th width='50'>MRB</th>
-            		<th width='50'>MRB</th>
-            	</tr>
-            	<tr>
-            		<td width='50'>23</td>
-            		<td width='50'>23</td>
-            		<td width='50'>23</td>
-            		<td width='50'>23</td>
-            		<td width='50'>23</td>
-            		<td width='50'>23</td>
-            	</tr>
-            </table>
+            <table border='1'><tr>";
+                for ($count=1; $count<7; $count++){ //Sería 6 los que entran en horizontal
+            	$content = $content."
+            		<th width='50'>	MPB</th>
+                        <td width='50'>23</td>
+            	";
+                }
+            $content = $content."</tr></table>
             <br/>
-            <div>Descripción: <br/>
-                    <textarea rows='6' cols='40'>Texto Observaciones</textarea>
-        	</div>
-        	<br/>
+                    <textarea rows='2' cols='85'>Texto </textarea>
+        	
+        	<br/><br/>
                 <div>¿Tiene tiesto? </div>
-        </td>";       
-        
-    }
+        </td></tr>"; 
+            
+    };        
     
-    $content = $content."</tr></table></body></html></page>";
+    $content = $content."</table></body></html></page>";
 
 
     ob_end_clean();
