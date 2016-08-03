@@ -45,7 +45,6 @@ class ArticulosController extends ControladorBase{
   public function listarArtInformes(){
 		 //Creamos el objeto usuario
         $articuloDao=new ArticuloDao();
-        $articuloDao->setTable("articulo");
 
         //Conseguimos todos los usuarios
         $allArticulos = array();
