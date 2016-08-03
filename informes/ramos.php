@@ -5,7 +5,7 @@
 require_once("../controller/ClientesController.php");
 
 
-//Creamos el objeto cliente
+//Creamos el objeto clienteeee
     $cliControlador = new ClientesController;
     $allClientes = $cliControlador->listarInfClientes();
 
