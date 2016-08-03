@@ -5,9 +5,13 @@
 require_once("../controller/ClientesController.php");
 
 
-//Creamos el objeto cliente
+    //Creamos el objeto cliente
     $cliControlador = new ClientesController;
     $allClientes = $cliControlador->listarInfClientes();
+    
+    //obtenemos los articulos para la cabecera de la tabla
+
+    
 
    $content = "<page>";
     $content = $content."<html><body><h1>Pedidos 'Flores Sueltas' - Flores Escobar</h1><br>";
