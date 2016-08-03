@@ -5,8 +5,10 @@ require_once("../model/Cliente.php");
 
 class ClientesController extends ControladorBase{
 
+    private $clienteDao;
     public function __construct() {
         parent::__construct();
+        $this->clienteDao = new ClienteDao();
     }
 
     public function index(){
@@ -32,6 +34,8 @@ class ClientesController extends ControladorBase{
         $allClientes = array();
         $j = array();
         $allClientes=$clienteDao->getAllClientesOrderByApellido();
+        $clienteDao->destroy();
+        unset($clienteDao);
         foreach ($allClientes as $item){
             $j[]=$item->toJSON();
         }
@@ -48,6 +52,8 @@ class ClientesController extends ControladorBase{
        //Conseguimos todos los usuarios
        $allClientes = array();
        $allClientes=$clienteDao->getAllClientesOrderByApellido();
+       $clienteDao->destroy();
+        unset($clienteDao);
   /*     foreach ($allClientes as $item){
            $j[]=$item->toJSON();
        }
@@ -86,6 +92,11 @@ class ClientesController extends ControladorBase{
         $cli=$clientes->getUnCliente($idCliente);
         var_dump($cli);
     }
+    
+    public function destroy(){
+        $this->clienteDao = null;
+        unset($this->clienteDao);
+    }
 
 }
 
@@ -105,6 +116,8 @@ if(isset($_POST['accion'])){
         (int)$idCliente = (int)$_POST['idCliente'];
         $clienteDao=new ClienteDao();
         $delete = $clienteDao->deleteById((int)$idCliente);
+        $clienteDao->destroy();
+        unset($clienteDao);
         if($delete){//todo ha ido bien;
             header("Content-Type: application/json", true);
             $obj = new stdClass();
@@ -129,6 +142,8 @@ if(isset($_POST['accion'])){
 
         $clienteDao=new ClienteDao();
         $edit=$clienteDao->editarCliente($idCliente, $nombre, $apellido1, $apellido2, $telefono);
+        $clienteDao->destroy();
+        unset($clienteDao);
         if($edit){//todo ha ido bien;
             header("Content-Type: application/json", true);
             $obj = new stdClass();

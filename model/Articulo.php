@@ -47,7 +47,7 @@ class Articulo{
     }
     
     public function getAbreviatura(){
-        return $this->atributo;
+        return $this->abreviatura;
     }
     
     public function setAbreviatura($abreviatura){

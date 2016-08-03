@@ -40,7 +40,8 @@ $(document).ready(function() {
 				}
 			});
 		}else if (opcion == 'infPedidos'){
-			$(location).attr('href','../informes/floresSueltas.php');
+			//$(location).attr('href','../informes/floresSueltas.php');
+			window.open('../informes/floresSueltas.php','_blank');
 		}else if (opcion == 'infStock'){
 			$(location).attr('href','../informes/stock.php');
 		}else{

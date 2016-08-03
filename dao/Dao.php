@@ -122,6 +122,15 @@ class Dao{
      * Aqui podemos montarnos un monton de métodos que nos ayuden
      * a hacer operaciones con la base de datos de la entidad
      */
-
+    public function destroy(){
+        $this->table = null;
+        unset($this->table);
+        
+        $this->db = null;
+        unset($this->db);
+        
+        $this->conectar = null;
+        unset($this->conectar);
+    }
 }
 ?>

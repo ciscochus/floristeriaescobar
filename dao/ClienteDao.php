@@ -5,7 +5,7 @@ require_once("../model/Cliente.php");
 
 //Class
 class ClienteDao extends Dao{
-
+    
 	public function __construct(){
         $table="cliente";
 	    parent::__construct($table);
@@ -106,5 +106,6 @@ class ClienteDao extends Dao{
         }
         return $resultSet;
     }
+    
 }
 ?>
