@@ -19,6 +19,11 @@ class Dao{
         return $this->conectar;
     }
 
+    public function conectar(){
+        $this->conectar=new Conectar();
+        $this->db=$this->conectar->conexion();
+    }
+
     public function db(){
         return $this->db;
     }

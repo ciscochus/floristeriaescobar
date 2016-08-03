@@ -29,8 +29,8 @@ class StockDao extends Dao{
 			$x->setStock($item->stock);
 			$x->setSumaStock($item->sumaStock);
 
-      $listaStock[]=$x;
-    }
+            $listaStock[]=$x;
+        }
 
 		return $listaStock;
 	}
