@@ -12,11 +12,11 @@ require_once("../controller/ClientesController.php");
     //Es para probar, esto hay que quitarlo por lo que devuelva la función
     $allPedidos = array(cliente1,cliente2,cliente3,cliente4,cliente5,cliente6);
 
-   $fechaInsertada = '20/07/2016';    //HAy que pasarle la fecha seleccionada en la pantalla y por la que se realiza la búsqueda 
+    $fechaInsertada = filter_input(INPUT_GET, 'fechaReserva');    
     
     $content = '<page><html>';
     $content = $content."<body>";
-    $content = $content."<h1>Ramos para: ".$fechaInsertada."  - Flores Escobar</h1><br>";
+    $content = $content."<h1>Ramos para: ".$fechaInsertada."  ---- Flores Escobar</h1><br>";
     $content = $content."<table border='1'>
     ";
     

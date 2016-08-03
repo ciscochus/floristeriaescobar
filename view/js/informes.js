@@ -5,9 +5,9 @@ $(document).ready(function() {
 
 
 		if (opcion == 'infClientes'){
-			$(location).attr('href','../informes/listado_clientes.php');
+			window.open ('../informes/listado_clientes.php', '_blank');
 		}else if (opcion == 'infAriculos'){
-			$(location).attr('href','../informes/listado_articulos.php');
+			window.open ('../informes/listado_articulos.php', '_blank');
 		}else if (opcion == 'infCentros'){
 				bootbox.confirm('<p>Elija una fecha</p><input type="date" class="form-control" id="busFecInforme" name="busFecInforme"/>', function(result) {
 					if(result){
@@ -19,8 +19,8 @@ $(document).ready(function() {
 								accion : "infCentros",
 								fechaReserva : busFecInforme
 							}
-						});*/
-							$(location).attr('href','../informes/centros.php');
+						});*/   
+						window.open ('../informes/centros.php?fechaReserva='+ busFecInforme.value +'', '_blank');
 					}
 				});
 
@@ -36,13 +36,14 @@ $(document).ready(function() {
 								fechaReserva : busFecInforme
 							}
 						});*/
-						$(location).attr('href','../informes/ramos.php');
+						window.open ('../informes/ramos.php?fechaReserva='+ busFecInforme.value +'', '_blank');
 				}
 			});
 		}else if (opcion == 'infPedidos'){
-			$(location).attr('href','../informes/floresSueltas.php');
+                    window.open('../informes/floresSueltas.php','_blank');	
+           
 		}else if (opcion == 'infStock'){
-			$(location).attr('href','../informes/stock.php');
+			window.open('../informes/stock.php', '_blank');
 		}else{
 			notif({
 				msg : "Error en la selección de informes.",
