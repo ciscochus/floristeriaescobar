@@ -1,3 +1,5 @@
+/* global fecha, bootbox */
+
 $(document).ready(function() {
 	$("#imprInforme").on("click", function() {
 		//recogemos el formulario insertado
