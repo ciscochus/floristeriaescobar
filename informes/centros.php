@@ -38,7 +38,7 @@ require_once("../controller/ClientesController.php");
         $content = $content."<table border='0.5' width='750'>";
         
         $numPedido = 0;
-        while ($numPedido <= $numeroLineas){
+        while ($numPedido < $numeroLineas){
         //for ($numPedido = 0; $numPedido < $numeroLineas; $numPedido++){
             $item = $result[$numPedido];
             
