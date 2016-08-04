@@ -10,27 +10,27 @@ require_once("../model/Cliente.php");
     
     $dao=new ArticuloDao();
     
-    $q = "SELECT * FROM articulo ORDER BY nombre";
-    
-    $query=$dao->executeQuery($q);
-        if ($query){
-                while ($row = $query->fetch_object()) {
-                $resultSet[]=$row;
-            }
-                
-            $listaArticulos=array();
-
-            foreach ($resultSet as $item){
-                $x = new Articulo();
-                $x->setAbreviatura($item->abreviatura);
-                $x->setIdArticulo($item->idArticulo);
-                $x->setNombre($item->nombre);
-                $x->setPrecio($item->precio);
-                $x->setStock($item->stock);
-    
-                $listaArticulos[]=$x;
-            }
-        }
+    // $q = "SELECT * FROM articulo ORDER BY nombre";
+//     
+    // $query=$dao->executeQuery($q);
+        // if ($query){
+                // while ($row = $query->fetch_object()) {
+                // $resultSet[]=$row;
+            // }
+//                 
+            // $listaArticulos=array();
+// 
+            // foreach ($resultSet as $item){
+                // $x = new Articulo();
+                // $x->setAbreviatura($item->abreviatura);
+                // $x->setIdArticulo($item->idArticulo);
+                // $x->setNombre($item->nombre);
+                // $x->setPrecio($item->precio);
+                // $x->setStock($item->stock);
+//     
+                // $listaArticulos[]=$x;
+            // }
+        // }
         
         
         
@@ -64,10 +64,12 @@ require_once("../model/Cliente.php");
         <tr>
             <th width='35'>&nbsp; Nº </th>
             <th width='250'>&nbsp; Cliente</th>";
+            
+        $listaArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);    
         
-        foreach($listaArticulos as $articulo)
+        foreach($listaArticulos as $abreviatura=>$cantidad)
         {
-            $content = $content."<th width='42'>".$articulo->getAbreviatura()."</th>";
+            $content = $content."<th width='42'>".$abreviatura."</th>";
         }
         $content = $content."</th>";
 
@@ -76,10 +78,46 @@ require_once("../model/Cliente.php");
         $content = $content."<tr>";
         $content = $content."<td align='right'>".$count."&nbsp;</td>";
         $content = $content."<td>&nbsp;".$item->getApellido_1()."&nbsp;".$item->getApellido_2().", &nbsp;".$item->getNombre()."</td>";
+        //para cada cliente inicializo la lista de Articulos a cantidad 0
+        $articulosAux = $listaArticulos;
         
-        foreach($listaArticulos as $articulo)
+        foreach($articulosAux as $abreviatura=>$cantidad)
         {
-            $content = $content."<td>0 </td>";
+            $q = "SELECT 
+                    IFNULL(SUM(
+                        compraarticulo.cantidadArticulo
+                    ),0) as 'CANTIDAD'
+                FROM 
+                    cliente, 
+                    pedido, 
+                    subpedido, 
+                    compraarticulo, 
+                    articulo 
+                WHERE 
+                    cliente.idCliente = pedido.idCliente 
+                    AND cliente.idCliente = ".$item->getIdCliente()."
+                    AND pedido.idPedido = subpedido.idPedido 
+                    AND compraarticulo.idSubPedido = subpedido.idSubPedido 
+                    AND compraarticulo.idArticulo = articulo.idArticulo 
+                    AND subpedido.tipoEncargo = 1 
+                    AND articulo.abreviatura = '".$abreviatura."'";
+                    
+            $query=$dao->executeQuery($q);
+            
+            if ($query){
+                while ($row = $query->fetch_object()) {
+                    $resultSetCantidad[]=$row;
+                }
+                $cantidad = $resultSetCantidad[count($resultSetCantidad)-1]->CANTIDAD;
+            }
+            
+            if($cantidad>0){
+                $content = $content."<td align='center'><b>".$cantidad."</b></td>";
+            }
+            else{
+                $content = $content."<td align='center'>".$cantidad."</td>";
+            }
+            
         }
         $content = $content."</tr>";
         $count++;
