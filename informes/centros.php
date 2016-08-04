@@ -11,20 +11,17 @@ require_once("../controller/ClientesController.php");
     //$allPedidos = $cliControlador->listarInfClientes();
 
     
-    //Es para probar, esto hay que quitarlo por lo que devuelva la función
-    $allPedidos = array(cliente1,cliente2,cliente3,cliente4,cliente5,cliente6);
-    
     $fechaInsertada = filter_input(INPUT_GET, 'fechaReserva');
     
     $dao=new Dao();
     $sentencia ="SELECT subpedido.idSubPedido, subpedido.numOrden, CONCAT(cliente.nombre, ' ', cliente.apellido_1, ' ', cliente.apellido_2) AS nombre, articulo.abreviatura, SUM(compraarticulo.cantidadArticulo), subpedido.descripcion, subpedido.tiesto, subpedido.estadoAlmacen FROM cliente, pedido, subpedido, compraarticulo, articulo WHERE cliente.idCliente = pedido.idCliente AND pedido.idPedido = subpedido.idPedido AND compraarticulo.idSubPedido = subpedido.idSubPedido AND compraarticulo.idArticulo = articulo.idArticulo AND subpedido.tipoEncargo = 2 AND subpedido.diaEntrega = '$fechaInsertada' GROUP BY cliente.idCliente, cliente.nombre, cliente.apellido_1, cliente.apellido_2, pedido.idPedido, articulo.abreviatura ORDER BY subpedido.numOrden";
     $query=$dao->executeQuery($sentencia);
-    $numeroLineas = 0;
     
+    $numeroLineas = 0;    
     if ($query){
         while ($row = $query->fetch_object()) {
            $result[]=$row;
-           $numeroLineas =  $numeroLineas+1;
+           $numeroLineas++;
         }
     }
     
@@ -34,12 +31,12 @@ require_once("../controller/ClientesController.php");
     
     if ($numeroLineas == 0){
         $content = $content."<h4>No hay datos para la fecha solicitada</h4>";      
-   }else{
+    }else{
         $content = $content."<table border='0.5' width='750'>";
         
-        $numPedido = 0;
+        $numPedido = 0  ; //Variable de control bucle
         while ($numPedido < $numeroLineas){
-        //for ($numPedido = 0; $numPedido < $numeroLineas; $numPedido++){
+            
             $item = $result[$numPedido];
             
             if ($item->tiesto == 0 || $item->tiesto == NULL){
@@ -56,7 +53,7 @@ require_once("../controller/ClientesController.php");
                 $auxEstAlmacen = 'Realizado';
             }else{
                 $auxEstAlmacen = 'Desconocido';
-            };
+            }
                   
             
             $content = $content."<tr><td>
@@ -140,6 +137,7 @@ require_once("../controller/ClientesController.php");
         $content = $content."</table>";
     }
     $content = $content."</body></html></page>";
+    
 
     ob_end_clean();
     require_once('../view/lib/html2pdf/html2pdf.class.php');
