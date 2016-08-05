@@ -60,8 +60,7 @@ require_once("../controller/ClientesController.php");
                 <div><strong>Num Orden: </strong>".$item->numOrden."</div> <!--Quiero ponerlo con css pero me tengo que pelear con la librería-->
                 <div><strong>Cliente: </strong>".$item->nombre."</div> 
                 <br/>
-                <strong>Artículos</strong>
-                <table border='0.2'><tr>";
+                <table border='0.2'><tr><th width='70' rowspan='2'>Artículos</th>";
                     for ($count=1; $count<7; $count++){ //Sería 6 los que entran en horizontal
                         $content = $content."
                         <th align='center' width='50'> MPB</th>

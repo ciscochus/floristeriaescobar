@@ -11,7 +11,7 @@ $(document).ready(function() {
 		}else if (opcion == 'infAriculos'){
 			window.open ('../informes/listado_articulos.php', '_blank');
 		}else if (opcion == 'infCentros'){
-				bootbox.confirm('<p>Elija una fecha</p><input type="date" class="form-control" id="busFecInforme" name="busFecInforme"/>', function(result) {
+			bootbox.confirm('<p>Elija una fecha</p><input type="date" class="form-control" id="busFecInforme" name="busFecInforme"/>', function(result) {
 					if(result){
 					/*	var request = $.ajax({
 							url : "../informes/centros.php",
