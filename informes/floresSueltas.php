@@ -34,7 +34,7 @@ require_once("../model/Cliente.php");
         
         
         
-    $q = "SELECT * FROM cliente ORDER BY nombre";
+    $q = "SELECT * FROM cliente ORDER BY apellido_1, apellido_2, nombre";
     
     $query=$dao->executeQuery($q);
         if ($query){
