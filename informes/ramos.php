@@ -8,7 +8,14 @@ require_once("../controller/ClientesController.php");
     $fechaInsertada = filter_input(INPUT_GET, 'fechaReserva');
     
     $dao=new Dao();
-    $sentencia ="SELECT subpedido.idSubPedido, subpedido.numOrden, CONCAT(cliente.nombre, ' ', cliente.apellido_1, ' ', cliente.apellido_2) AS nombre, articulo.abreviatura, SUM(compraarticulo.cantidadArticulo), subpedido.descripcion, subpedido.tiesto, subpedido.estadoAlmacen FROM cliente, pedido, subpedido, compraarticulo, articulo WHERE cliente.idCliente = pedido.idCliente AND pedido.idPedido = subpedido.idPedido AND compraarticulo.idSubPedido = subpedido.idSubPedido AND compraarticulo.idArticulo = articulo.idArticulo AND subpedido.tipoEncargo = 3 AND subpedido.diaEntrega = '$fechaInsertada' GROUP BY cliente.idCliente, cliente.nombre, cliente.apellido_1, cliente.apellido_2, pedido.idPedido, articulo.abreviatura ORDER BY subpedido.numOrden";
+    $sentencia ="SELECT cliente.idCliente, CONCAT(cliente.nombre, ' ', cliente.apellido_1, ' ', cliente.apellido_2) AS nombre, subpedido.idSubPedido, subpedido.diaEntrega, subpedido.numOrden, subpedido.tiesto, subpedido.descripcion, subpedido.estadoAlmacen
+                        FROM    cliente, 
+                                pedido, 
+                                subpedido 
+                        WHERE   pedido.idCliente = cliente.idCliente AND 
+                                subpedido.idPedido = pedido.idPedido AND 
+                                subpedido.tipoEncargo = '3' and subpedido.diaEntrega = '$fechaInsertada'
+                        ORDER BY subpedido.numOrden";
     $query=$dao->executeQuery($sentencia);
     
     $numeroLineas = 0;    
@@ -46,6 +53,17 @@ require_once("../controller/ClientesController.php");
             }else{
                 $auxEstAlmacen = 'Desconocido';
             }
+            
+            $auxIdSub = $item->idSubPedido;
+            
+            $busqArt ="SELECT articulo.abreviatura, SUM(compraarticulo.cantidadArticulo) AS cantidad FROM articulo, compraarticulo WHERE compraarticulo.idSubPedido = '$auxIdSub' AND articulo.idArticulo = compraarticulo.idArticulo GROUP BY articulo.abreviatura";
+            
+            $queryArt=$dao->executeQuery($busqArt);          
+            if ($queryArt){
+                while ($rowArt = $queryArt->fetch_object()) {
+                   $articulosResult[]=$rowArt;
+                }
+            }
                   
             
             $content = $content."<tr><td>
@@ -53,16 +71,16 @@ require_once("../controller/ClientesController.php");
                 <div><strong>Cliente: </strong>".$item->nombre."</div> 
                 <br/>
                 <table border='0.2'><tr><th width='70' rowspan='2'>Artículos</th>";
-                    for ($count=1; $count<7; $count++){ //Sería 6 los que entran en horizontal
+                    foreach ($articulosResult as $art){
                         $content = $content."
-                        <th align='center' width='50'> MPB</th>
+                        <th align='center' width='50'>".$art->abreviatura."</th>
                         ";
                     }
                     $content = $content."</tr><tr>";
-                    for ($count=1; $count<7; $count++){ //Sería 6 los que entran en horizontal
+                    foreach ($articulosResult as $art){ 
                         $content = $content."
                         
-                        <td align='right' width='50'>23</td>
+                        <td align='right' width='50'>".$art->cantidad."</td>
                         ";
                     }
                 $content = $content."</tr></table>
