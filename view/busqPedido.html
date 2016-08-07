@@ -1,0 +1,297 @@
+
+
+<div id="nuevoPedido">
+<div class='col-md-12'>
+	<label>Buscar pedido:</label>
+</div>
+
+<div class='col-md-12'>
+<div class="panel-group" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="verde panel-heading " role="tabpanel" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button"  aria-controls="collapseOne">
+          Cliente
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        	<div class="row">
+        		<div id="buscarCliente" class="col-md-8">
+	        		<label>Buscar cliente:  </label>
+	        		<input id="cliente" type="text" size="50" placeholder='Nombre o apellidos del cliente'/>
+	        		<div id="resultados"></div>
+        		</div>
+        		<div id="clienteSeleccionado" class="col-md-4 post-it hidden"> </div>
+        	</div>
+      </div>
+    </div>
+  </div>
+  <div id="panel-pedido" class="panel panel-default hidden">
+    <div class="verde panel-heading " role="tabpanel" id="headingTwo">
+      <h4 class="panel-title">
+        <a role="button" aria-controls="collapseTwo">
+          Pedido
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+      		<div class="row">
+	        	<div id="tipoPedido" class="col-md-12">
+	        		<div class="row">
+		        		<div class='form-group'>
+		        			<label class="col-sm-2">Tipo de pedido:  </label>
+		        			<div class="col-sm-7">
+		        				<select id="tipo" class='form-control'>
+				        			<option id='0'>Seleccione un tipo</option>
+									<option id='1'>Flores Sueltas</option>
+									<option id='2'>Centros</option>
+									<option id='3'>Ramos</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<a href="#" id="nuevoSubPedido" class="btn btn-success btn-nuevoPedido hidden">Nuevo pedido</a>
+							</div>
+		        		</div>
+	        		</div>	
+	        		<!-- Listado subpedidos -->
+	        		<div id="listado-subpedidos" class="row"></div>
+	        		<!-- Fin Listado subpedidos -->
+	        		<!--  Busqueda de articulo -->
+	        		<div id="busqueda-articulo" class="hidden row">
+		        		<div class='form-group'>
+							<label class="col-sm-2">Articulo:  </label>
+							<div class="col-sm-10">
+							<input type='text' class='form-control' name='nomArtic' id='nomArtic' placeholder='Nombre Artículo' />
+							</div>
+						</div>
+						<div class="col-sm-2"></div><div class="col-sm-10" id="articulos-resultados"></div>
+					</div>
+						<div id="lista-articulos" class="hidden row">
+							<div class='col-md-12'>
+								<p class="titulo">
+									Artículos insertados en el pedido:
+								</p>
+								<table id="tablaArticulos" class='table table-striped'>
+								 <thead>
+								 	<tr>
+										<th>Nombre</th><th>Cantidad</th><th>Acciones</th>
+									</tr>
+								 </thead>
+								 <tbody>
+								 	
+								 </tbody>
+								</table>
+							</div>
+						</div>
+	    		</div>
+    		</div>
+      </div>
+    </div>
+  </div>
+  <div id="panel-entrega" class="panel panel-default hidden">
+    <div class="verde panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a role="button" aria-controls="collapseThree">
+          Entrega
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <!-- Entrega -->
+        <div class="row">
+        	<div class="col-md-3 centradoVertical">Fecha de entrega:</div>
+        	<div class="col-md-4 centradoVertical fechaEntrega"><input type="date" class="form-control" id="fecEntrega" name="fecEntrega"></div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3 centradoVertical">Orden de Llegada:</div>
+        	<div class="col-md-4 centradoVertical ordenLlegada"><input type="number" maxlength="4" size="4" min="0" class="form-control" name="ordLlegada" id="ordLlegada"></div>
+    	</div>
+    	<div class="row">
+        	<div class="col-md-3 centradoVertical">Estado Almacen:</div>
+        	<div class="col-md-4 centradoVertical estadoAlmacen">
+        		<select class="form-control">
+        			<option id="1">Sin realizar</option>
+        			<option id="2">En pronceso</option>
+        			<option id="3">Realizado</option>
+    			</select>
+        	</div>
+    	</div>
+    	<div class="row">
+        	<div class="col-md-3 centradoVertical">Tiene Tiesto/Búcaro:</div>
+        	<div class="col-md-4 centradoVertical tiesto"><input type="checkbox" id="tiesto" name="tiesto" value="0"></div>
+    	</div>
+    	<div class="row">
+        	<div class="col-md-3 centradoVertical">Descripción:</div>
+        </div>
+    	<div class="col-md-12">
+        	<textarea rows="4" cols="50" maxlength="180" class="form-control" id="descr" name="descr" placeholder="Descripción" style="background-image: none; background-position: 0% 0%; background-repeat: repeat;"></textarea>
+		</div>
+        <!-- Fin Entrega -->
+      </div>
+    </div>
+  </div>
+  
+</div>
+<div id="botonera" class="row col-md-12 hidden">
+	<div class="col-md-12"></div>
+	<div align="right" class="col-md-12">
+		<a href="#" id="guardarPedido" class="btn btn-success btn-guardar">Guardar Pedido</a>
+                <a href="#" id="guardarPedido" class="btn btn-success btn-guardar">Eliminar Pedido</a>
+                <a href="#" id="notaPedido" class="btn btn-success btn-guardar">Nota Entrega</a>
+	</div>
+</div>
+</div>
+
+<!-- ANTIGUO -->
+<div id="antiguo" class="hidden">
+<div class='col-md-12'>
+	<div class='col-md-2'>
+		<p>
+			Cliente:
+		</p>
+	</div>
+	<div class='col-md-10'>
+		<div class='panel-group' id='selCliPedido'>
+			<div class='panel panel-default'>
+				<div class='panel-heading'>
+					<h4 class='panel-title'><a href='#' id='pedNuevoCli'> Nuevo Cliente </a></h4>
+				</div>
+			</div>
+			<div class='panel panel-default'>
+				<div class='panel-heading'>
+					<h4 class='panel-title'><a data-toggle='collapse' data-parent='#selCliPedido' href='#pedSelCli'> Selecciona Cliente </a></h4>
+				</div>
+				<div id='pedSelCli' class='panel-collapse collapse'>
+					<div class='panel-body'>
+						<p>
+							Búsqueda de cliente por apellido
+						</p>
+						<form class='form form-signup' role='form' method='post' action='#'>
+							<div class='col-md-8'>
+								<input type='text' class='form-control' name='1_apellido' id='1_apellido' placeholder='Primer Apellido' required/>
+								<br/>
+							</div>
+							<div class='col-md-2'>
+								<a href='#' id='busqCliente' type='submit' name='busqCliente' class='btn btn-success'>Buscar</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p>
+			Registro con el cliente seleccionado, se mostrará cuando se haya seleccionado o insertado y se elimina lo otro
+		</p>
+	</div>
+</div>
+
+<div class='col-md-12'>
+	<div class='col-md-2'>
+		<p>
+			Tipo de pedido:
+		</p>
+	</div>
+	<div class='col-md-4'>
+		<select class='form-control'>
+			<option id='1'>Flores Sueltas</option>
+			<option id='2'>Centros</option>
+			<option id='3'>Ramos</option>
+		</select>
+	</div>
+</div>
+
+<div class='col-md-12'>
+	<div class='col-md-2'>
+		<p></p>
+		<p>
+			Artículo:
+		</p>
+	</div>
+
+	<p></p>
+
+	<form class='form form-signup' role='form' method='post' action='#'>
+		<div class='col-md-8'>
+			<input type='text' class='form-control' name='nomArtic' id='nomArtic' placeholder='Nombre Artículo' required/>
+			<br/>
+		</div>
+		<div class='col-md-2'>
+			<a href='#' id='busqArticulo' type='submit' name='busqArticulo' class='btn btn-success'>Buscar</a>
+		</div>
+	</form>
+
+	<div class='col-md-12'>
+		<p>
+			Artículos insertados en el pedido:
+		</p>
+	</div>
+</div>
+
+<div class='col-md-12'>
+	<div class='col-md-2'>
+		Fecha de entrega:
+	</div>
+	<div class='col-md-4'>
+		<input type='date' class='form-control' id='fecEntrega' name='fecEntrega'/>
+	</div>
+
+	<div class='col-md-2'>
+		Orden Llegada:
+	</div>
+	<div class='col-md-2'>
+		<input type='number' maxlength='4' size='4' min='0' class='form-control' name='ordLlegada' id='ordLlegada' required/>
+		<br/>
+	</div>
+
+</div>
+
+<div class='col-md-12'>
+	<div class='col-md-2'>
+		Tiene tiesto:
+	</div>
+	<div class='col-md-4'>
+		<input type='checkbox'  id='tiesto' name='tiesto' value='Tiene tiesto'/>
+	</div>
+
+	<div class='col-md-2'>
+		Tipo:
+	</div>
+	<div class='col-md-4'>
+		<select class='form-control'>
+			<option id='1'>Flores Sueltas</option>
+			<option id='2'>Centros</option>
+			<option id='3'>Ramos</option>
+		</select>
+	</div>
+</div>
+
+<div>
+	<p></p>
+</div>
+
+<div class='col-md-12'>
+	<div class='col-md-2'>
+		<p></p>
+		Descripción:
+	</div>
+	<div class='col-md-10'>
+		<p></p>
+		<textarea rows='4' cols='50' maxlength='180' class='form-control' id='descr' name='descr' placeholder='Descripción'></textarea>
+	</div>
+</div>
+</div>
+<div id="info" class="hidden">
+	<div class="cliente">
+		<span class="seleccionado">false</span>
+		<span class="id"></span>
+	</div>
+	<div class="pedido">
+		<span class="seleccionado">false</span>
+		<span class="id"></span>
+	</div>
+</div>
+</div>

@@ -263,8 +263,13 @@ $(document).ready(function() {
 
 		$("#main").html(salida);
 	});
+        
+        $("#busPedidos").on("click", function() {
+		$("#main").load("busqPedido.html");
+	});
 
-	$("#busPedidos").on("click", function() {
+
+/**	$("#busPedidos").on("click", function() {
 
 		var salida = "";
 		salida += "<br/>";
@@ -527,7 +532,7 @@ $(document).ready(function() {
 
 
 		$("#main").html(salida);
-	});
+	});**/
 
 //Mostrar Stock
 	$("#verStock").on("click", function() {
