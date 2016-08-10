@@ -26,7 +26,7 @@ $(document).ready(function() {
 					}
 				});
 
-		}else if (opcion == 'infRamos'){
+		/**}else if (opcion == 'infRamos'){
 			bootbox.confirm('<p>Elija una fecha</p><input type="date" class="form-control" id="busFecInforme" name="busFecInforme"/>', function(result) {
 				if(result){
 					/*	var request = $.ajax({
@@ -38,9 +38,9 @@ $(document).ready(function() {
 								fechaReserva : busFecInforme
 							}
 						});*/
-						window.open ('../informes/ramos.php?fechaReserva='+ busFecInforme.value +'', '_blank');
+					/**	window.open ('../informes/ramos.php?fechaReserva='+ busFecInforme.value +'', '_blank');
 				}
-			});
+			});*/
 		}else if (opcion == 'infPedidos'){
                     window.open('../informes/floresSueltas.php','_blank');	
            

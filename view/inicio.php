@@ -513,11 +513,11 @@
                   <label><input type="radio" id="infPedidos" value="infPedidos" name="informes">Informe de pedidos y clientes del tipo "Flores sueltas"</label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" id="infCentros" value="infCentros" name="informes">Informe de pedidos "Centros" por fecha</label>
+                  <label><input type="radio" id="infCentros" value="infCentros" name="informes">Informe de pedidos "Centros" y "Ramos" por fecha</label>
                 </div>
-                <div class="radio">
+              <!--  <div class="radio">
                   <label><input type="radio" id="infRamos" value="infRamos" name="informes">Informe de pedidos "Ramos" por fecha</label>
-                </div>
+                </div>-->
                 <div class="radio">
                   <label><input type="radio" id="infStock" value="infStock" name="informes">Informe de Stock</label>
                 </div>
