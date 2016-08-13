@@ -10,31 +10,15 @@ require_once("../model/Cliente.php");
     
     $dao=new ArticuloDao();
     
-    // $q = "SELECT * FROM articulo ORDER BY nombre";
-//     
-    // $query=$dao->executeQuery($q);
-        // if ($query){
-                // while ($row = $query->fetch_object()) {
-                // $resultSet[]=$row;
-            // }
-//                 
-            // $listaArticulos=array();
-// 
-            // foreach ($resultSet as $item){
-                // $x = new Articulo();
-                // $x->setAbreviatura($item->abreviatura);
-                // $x->setIdArticulo($item->idArticulo);
-                // $x->setNombre($item->nombre);
-                // $x->setPrecio($item->precio);
-                // $x->setStock($item->stock);
-//     
-                // $listaArticulos[]=$x;
-            // }
-        // }
         
-        
-        
-    $q = "SELECT * FROM cliente ORDER BY apellido_1, apellido_2, nombre";
+    $q = "SELECT        cliente.* 
+            FROM        cliente, pedido, subpedido
+            WHERE       cliente.idCliente = pedido.idCliente AND
+                        pedido.idPedido = subpedido.idPedido AND
+                        subpedido.tipoEncargo = 1
+            ORDER BY    cliente.apellido_1, 
+                        cliente.apellido_2, 
+                        cliente.nombre";
     
     $query=$dao->executeQuery($q);
         if ($query){
@@ -66,6 +50,7 @@ require_once("../model/Cliente.php");
             <th width='250'>&nbsp; Cliente</th>";
             
         $listaArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);    
+        $totalArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);
         
         foreach($listaArticulos as $abreviatura=>$cantidad)
         {
@@ -113,9 +98,10 @@ require_once("../model/Cliente.php");
             
             if($cantidad>0){
                 $content = $content."<td align='center'><b>".$cantidad."</b></td>";
+                $totalArticulos[$abreviatura]+=$cantidad;
             }
             else{
-                $content = $content."<td align='center'>".$cantidad."</td>";
+                $content = $content."<td align='center'> </td>";
             }
             
         }
@@ -123,8 +109,24 @@ require_once("../model/Cliente.php");
         $count++;
     }
 
+    $content = $content."</table>";
+    $content = $content."<table border='1' style='margin-top:10px;'>
+    <tr>
+            <th width='291'>&nbsp; Total</th>";
+            
+    foreach($totalArticulos as $abreviatura=>$cantidad)
+    {
+        if($cantidad>0){
+            $content = $content."<th width='42'>".$cantidad."</th>";
+        }
+        else{
+            $content = $content."<th width='42'> </th>";
+        }
+        
+    }        
+            
     $content = $content."</table></body></html></page>";
-
+    
     echo $content;
     
     // ob_end_clean();
