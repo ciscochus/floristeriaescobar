@@ -11,11 +11,14 @@ require_once("../model/Cliente.php");
     $dao=new ArticuloDao();
     
         
-    $q = "SELECT        cliente.* 
-            FROM        cliente, pedido, subpedido
+    $q = "SELECT        DISTINCT(cliente.idCliente), cliente.nombre, cliente.apellido_1, cliente.apellido_2, cliente.telefono
+            FROM        cliente, pedido, subpedido, compraarticulo, articulo
             WHERE       cliente.idCliente = pedido.idCliente AND
                         pedido.idPedido = subpedido.idPedido AND
-                        subpedido.tipoEncargo = 1
+                        subpedido.tipoEncargo = 1 AND
+                        compraarticulo.idSubPedido = articulo.idArticulo AND
+                        articulo.abreviatura IN ('CLB', 'CLR', 'CLA', 'CLV', 'GLB', 'GLR', 'GLS', 'PA', 'MB', 'MA', 'LIL', 'RR', 'RB', 'RRO')
+                        
             ORDER BY    cliente.apellido_1, 
                         cliente.apellido_2, 
                         cliente.nombre";
