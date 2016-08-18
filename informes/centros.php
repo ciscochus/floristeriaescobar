@@ -86,8 +86,6 @@ require_once("../controller/ClientesController.php");
             //Consulta para sacar artículos
             $busqArt ="SELECT articulo.abreviatura, SUM(compraarticulo.cantidadArticulo) AS cantidad FROM articulo, compraarticulo WHERE compraarticulo.idSubPedido = '$auxIdSub' AND articulo.idArticulo = compraarticulo.idArticulo GROUP BY articulo.abreviatura";
             
-            //Inicializo array de búsqueda
-            $articulosResult[]=array();
             
             $queryArt=$dao->executeQuery($busqArt);          
             if ($queryArt){
@@ -102,7 +100,7 @@ require_once("../controller/ClientesController.php");
                 <div><strong>Tipo de Encargo: </strong>".$auxTipoEncargo."</div> 
                 <br/>
                 <table border='0.2' border-spacing='5px'><tr><th width='70' rowspan='2'>Artículos</th>";
-                    foreach ($articulosResult as $art){
+                   foreach ($articulosResult as $art){
                         $content = $content."
                         <th align='center' width='50'>".$art->abreviatura."</th>
                         ";
