@@ -2,6 +2,7 @@ var info = new Array();
 
 $(document).ready(function(){
 
+
 	$(document).on("input",'#buscarCliente #cliente',function(){
 		$("#buscarCliente #resultados").html("");
 		if($("#clienteSeleccionado").hasClass("hidden")==false){
@@ -63,32 +64,11 @@ $(document).ready(function(){
 		var apellido_2= $(this).find(".apellido_2").html();
 		var telefono= $(this).find(".telefono").html();
 		
-		$salida = "<h4>Cliente seleccionado</h4>";
-		$salida += "<ul>";
-		$salida += "<li>";
-			$salida+="<span class='nombre'>"+nombre+"</span> ";
-			$salida+="<span class='apellido_1'>"+apellido_1+"</span> ";
-			$salida+="<span class='apellido_2'>"+apellido_2+"</span>";
-			$salida+="<span class='id hidden'>"+id+"</span> ";
-		$salida += "</li>";
-		if(telefono!="null" && telefono!=""){
-			$salida += "<li>";
-				$salida+="<span class='telefono'>"+telefono+"</span> ";
-			$salida += "</li>";
-		}
-		$salida += "</ul>";
+		seleccionarCliente(id, nombre, apellido_1, apellido_2, telefono);
 		
-		$("#buscarCliente #cliente").val("");
-		$("#clienteSeleccionado").html($salida);
-		$("#clienteSeleccionado").removeClass("hidden");
-		$("#buscarCliente #resultados").html("");
-		$("#info .cliente .seleccionado").html("true");
-		$("#info .cliente .id").html(id);
-		$("#panel-pedido").removeClass("hidden");
-		$("#lista-articulos tbody").html("");
-		info["cliente"] = id;
-		obtenerPedido(id);
 	});
+	
+	
 	
 	$(document).on("input",'#busqueda-articulo #nomArtic',function(){
 		$.ajax({
@@ -650,6 +630,33 @@ function loadEntrega(idSubpedido){
  	return false;
 }
 
+function seleccionarCliente(id, nombre, apellido_1, apellido_2, telefono){
+		$salida = "<h4>Cliente seleccionado</h4>";
+		$salida += "<ul>";
+		$salida += "<li>";
+			$salida+="<span class='nombre'>"+nombre+"</span> ";
+			$salida+="<span class='apellido_1'>"+apellido_1+"</span> ";
+			$salida+="<span class='apellido_2'>"+apellido_2+"</span>";
+			$salida+="<span class='id hidden'>"+id+"</span> ";
+		$salida += "</li>";
+		if(telefono!="null" && telefono!=""){
+			$salida += "<li>";
+				$salida+="<span class='telefono'>"+telefono+"</span> ";
+			$salida += "</li>";
+		}
+		$salida += "</ul>";
+		
+		$("#buscarCliente #cliente").val("");
+		$("#clienteSeleccionado").html($salida);
+		$("#clienteSeleccionado").removeClass("hidden");
+		$("#buscarCliente #resultados").html("");
+		$("#info .cliente .seleccionado").html("true");
+		$("#info .cliente .id").html(id);
+		$("#panel-pedido").removeClass("hidden");
+		$("#lista-articulos tbody").html("");
+		info["cliente"] = id;
+		obtenerPedido(id);
+	}
 
 
 

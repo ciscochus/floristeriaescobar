@@ -309,6 +309,7 @@
                    <div class="input-group">
                        <span class="input-group-addon">Nombre:</span>
                        <input type="text" class="form-control" name="nombreCliente" id="nombreCliente" placeholder="Nombre" required/>
+                       <input type="hidden" id="accion" />
                    </div>
                </div>
                <div class="form-group">

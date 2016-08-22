@@ -1,23 +1,43 @@
 $(document).ready(function() {
 	//--- Nuevo Cliente --->
+	$(document).on("click","#pedidoNuevoCliente",function(){
+		$("#nuevoCliente #accion").val("nuevoPedido");
+		$("#nuevoCliente").modal("show");
+	});
+	
+	$(document).on('hidden.bs.modal', '#nuevoCliente',function () {
+    	$("#nuevoCliente #accion").val("");
+	});
+	
 	$("#newCliente").submit(function() {
 		nombre = $("#nombreCliente").val();
 		ape1 = $("#1apellido").val();
 		ape2 = $("#2apellido").val();
 		telf = $("#telefono").val();
+		accion = $("#accion").val();
 
 		var request = $.ajax({
 			url: "../view/cambiosClientes.php",
 			method: "POST",
-			data: { nombre: nombre, apellido1: ape1, apellido2: ape2, telefono: telf, Submit: "ok"}
+			data: { nombre: nombre, apellido1: ape1, apellido2: ape2, telefono: telf, Submit: "ok"},
+			dataType: "text"
 		});
-		request.done(function(result){
-			$('#nuevoCliente .closeModal').click();
-			$('#newCliente').trigger("reset");
-			if($("#pedNuevoCli").hasClass("activo") == false)
-			{
-				$('#clientes').click();
+		request.done(function(data){
+			if(accion == "nuevoPedido"){
+				id = data;
+				$('#nuevoCliente .closeModal').click();
+				$('#newCliente').trigger("reset");
+				seleccionarCliente(id, nombre, ape1, ape2, telf);
 			}
+			else{
+				$('#nuevoCliente .closeModal').click();
+				$('#newCliente').trigger("reset");
+				if($("#pedNuevoCli").hasClass("activo") == false)
+				{
+					$('#clientes').click();
+				}
+			}
+			
 			notif({
 				msg: "El cliente ha sido creado correctamente.",
 				type: "success",

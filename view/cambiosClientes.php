@@ -17,7 +17,8 @@ if(isset($_POST['Submit'])){
             $cliente->setApellido_1($_POST['apellido1']);
             $cliente->setApellido_2($_POST['apellido2']);
             $cliente->setTelefono($_POST['telefono']);
-            return $cliente->save();
+            $id = $cliente->save();
+            echo "$id";
             
     }
     else{

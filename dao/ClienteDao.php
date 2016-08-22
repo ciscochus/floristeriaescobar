@@ -75,6 +75,23 @@ class ClienteDao extends Dao{
         $q="INSERT INTO cliente (nombre,apellido_1,apellido_2,telefono) VALUES('$nombre','$ape1','$ape2','$telf')";
         
         $query=$this->executeQuery($q);
+        if($query){
+            //$q="SELECT id FROM cliente WHERE nombre='$nombre' AND apellido_1='$ape1' AND apellido_2='$ape2' AND telefono='$telefono'"
+            $q = "SELECT MAX(idCliente) as id from cliente";
+            $query=$this->executeQuery($q);
+            $resultSet = array();
+            if ($query){
+                while ($row = $query->fetch_object()) {
+                $resultSet[]=$row;
+              }
+                $id = 0;
+                foreach ($resultSet as $item){
+                    $id = $item->id;
+                }
+              return $id;
+            }
+            
+        }
         return $query;
     }
     
