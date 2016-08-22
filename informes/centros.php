@@ -16,15 +16,6 @@ require_once("../controller/ClientesController.php");
     $date = new DateTime($fechaInsertada); //Auxiliar para mostrar la fecha con formato español
     
     $dao=new Dao();
-    /*$sentencia ="SELECT cliente.idCliente, CONCAT(cliente.nombre, ' ', cliente.apellido_1, ' ', cliente.apellido_2) AS nombre, subpedido.idSubPedido, subpedido.diaEntrega, subpedido.numOrden, subpedido.tiesto, subpedido.descripcion, subpedido.estadoAlmacen
-                        FROM    cliente, 
-                                pedido, 
-                                subpedido 
-                        WHERE   pedido.idCliente = cliente.idCliente AND 
-                                subpedido.idPedido = pedido.idPedido AND 
-                                subpedido.tipoEncargo = '2' and subpedido.diaEntrega = 
-                        ORDER BY subpedido.numOrden";
-     * */
     
     $sentencia = "SELECT subpedido.tipoEncargo, cliente.idCliente, CONCAT(cliente.nombre, ' ', cliente.apellido_1, ' ', cliente.apellido_2) AS nombre, subpedido.idSubPedido, subpedido.diaEntrega, subpedido.numOrden, subpedido.tiesto, subpedido.descripcion, subpedido.estadoAlmacen
                         FROM    cliente, 
@@ -86,6 +77,7 @@ require_once("../controller/ClientesController.php");
             //Consulta para sacar artículos
             $busqArt ="SELECT articulo.abreviatura, SUM(compraarticulo.cantidadArticulo) AS cantidad FROM articulo, compraarticulo WHERE compraarticulo.idSubPedido = '$auxIdSub' AND articulo.idArticulo = compraarticulo.idArticulo GROUP BY articulo.abreviatura";
             
+            $articulosResult = array();
             
             $queryArt=$dao->executeQuery($busqArt);          
             if ($queryArt){
@@ -113,7 +105,7 @@ require_once("../controller/ClientesController.php");
                     }
                 $content = $content."</tr></table>
                 <br/><strong>Descripción</strong>
-                        <textarea disabled rows='2' cols='75'>".$item->descripcion."</textarea>
+                        <textarea disabled rows='5' cols='75'>".$item->descripcion."</textarea>
 
                 <br/><br/>
                     <div><strong>¿Tiene tiesto?</strong> ".$auxTiesto."</div>
