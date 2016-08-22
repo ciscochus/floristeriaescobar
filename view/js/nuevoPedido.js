@@ -319,7 +319,7 @@ $(document).ready(function(){
 				});
           	}
           	else{
-          		alert("no hay articulos");
+          		//alert("no hay articulos");
           	}
             
           },
@@ -505,7 +505,7 @@ function mostrarSubpedidos(subpedido){
 		var fechaEntrega = subpedido.diaEntrega;
 	}
 	var salida = "<div id='subpedido-"+subpedido.idSubPedido+"' class='panel-heading'>";
-		salida +="<h2 class='verde panel-title'>"+fechaEntrega+" - "+subpedido.numOrden+" <a href='#' id='edit-"+subpedido.idSubPedido+"'>Editar</a></h2>";
+		salida +="<h2 class='verde panel-title'>Fecha de entrega: "+fechaEntrega+" - Número de orden: "+subpedido.numOrden+" <a href='#' id='edit-"+subpedido.idSubPedido+"'>Editar</a></h2>";
 		salida +="<table><thead><tr><th>Articulo</th><th>Cantidad</th></tr></thead><tbody></tbody></table>";
 		salida +="</div>";
 		
@@ -531,7 +531,7 @@ function addArticuloLista(articulo,idSubPedido){
 	 		salida += "<td>0</td>";
 	 	}
 	 	else{
-	 		salida += "<td>"+articulo.cantidadArticulo+"</td>";
+	 		salida += "<td align='right'>"+articulo.cantidadArticulo+"</td>";
 	 	}
 	 	
 		salida += "</tr>";
