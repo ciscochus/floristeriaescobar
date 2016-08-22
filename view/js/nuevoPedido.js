@@ -631,6 +631,18 @@ function loadEntrega(idSubpedido){
 }
 
 function seleccionarCliente(id, nombre, apellido_1, apellido_2, telefono){
+		
+		
+		$("#clienteSeleccionado").addClass("hidden");
+		$("#info .cliente .seleccionado").html("false");
+		$("#info .cliente .id").html("");
+		$("#info .pedido .seleccionado").html("false");
+		$("#info .pedido .id").html("");
+		$("#tipo").prop('selectedIndex',0).change();
+		info = new Array();
+		
+		$("#buscarCliente #resultados").html("");
+			
 		$salida = "<h4>Cliente seleccionado</h4>";
 		$salida += "<ul>";
 		$salida += "<li>";
