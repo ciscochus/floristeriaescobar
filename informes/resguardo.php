@@ -49,16 +49,16 @@ require_once("../controller/ClientesController.php");
                 <br/>
                 <div align='center'>
                 <strong>Descripción</strong><br/><br/>
-                        <textarea disabled rows='5' cols='55'>".$item->descripcion."</textarea>
+                        <textarea disabled rows='7' cols='55'>".$item->descripcion."</textarea>
 
-                </div><br/><br/>
+                </div><br/>
                     <div><strong>  ¿Entrega tiesto?</strong> ".$auxTiesto."</div><br/>
             </td></tr>"; 
 
 //        }
         $content = $content."</table>";
         
-        $content = $content."<br/><br/><br/><br/>"; //Separador de las copias
+        $content = $content."<br/><br/><br/>"; //Separador de las copias
         
         $content = $content."<h4 align='center'>Flores Escobar<br/><br/>";
         $content = $content."Resguardo: nombreCliente<br/><br/>Fecha recogida: fechaPedido  --- Orden recogida: numOrden</h4><br/>";
@@ -76,9 +76,9 @@ require_once("../controller/ClientesController.php");
                 <br/>
                 <div align='center'>
                 <strong>Descripción</strong><br/><br/>
-                        <textarea disabled rows='5' cols='55'>".$item->descripcion."</textarea>
+                        <textarea disabled rows='7' cols='55'>".$item->descripcion."</textarea>
 
-                </div><br/><br/>
+                </div><br/>
                     <div><strong>  ¿Entrega tiesto?</strong> ".$auxTiesto."</div><br/>
             </td></tr>"; 
 
