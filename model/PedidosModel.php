@@ -15,9 +15,26 @@ class PedidosModel extends ModeloBase{
     }
 
     public function deleteByIdPedido($idPedido){
-        $query="DELETE FROM pedido WHERE idPedido='.$idPedido.'";
+        /*Cuando eliminamos un pedido hay que hacerlo en cascada, es decir, hay que eliminar primero los subpedidos de un pedido y despues el pedido en si*/
+        //eliminamos las tuplas de la tabla compraarticulo
+        
+        $query="DELETE FROM compraarticulo WHERE compraarticulo.idSubPedido IN (SELECT subpedido.idSubPedido FROM subpedido WHERE subpedido.idPedido = '.$idPedido.')";
         $pedido=$this->ejecutarSql($query);
-        return $pedido;
+        
+        if($pedido){
+          //eliminamos las tuplas de la tabla subpedido
+           $query="DELETE FROM subpedido WHERE subpedido.idPedido = '.$idPedido.')";
+           $pedido=$this->ejecutarSql($query);
+           
+           if($pedido){
+               //eliminamos el pedido en sí
+               $query="DELETE FROM pedido WHERE idPedido='.$idPedido.'";
+               $pedido=$this->ejecutarSql($query);
+               return $pedido;
+           }
+        }
+        
+        return false;
     }
 }
 ?>

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	/* Clientes */
 	$("#clientes").on("click", function() {
-
+		clearInfo();
 		var request = $.ajax({
 			url : "../controller/ClientesController.php",
 			method : "POST",
@@ -126,7 +126,7 @@ $(document).ready(function() {
 
 	/* Articulos */
 	$("#articulos").on("click", function() {
-
+		clearInfo();
 		var request = $.ajax({
 			url : "../controller/ArticulosController.php",
 			method : "POST",
@@ -258,7 +258,7 @@ $(document).ready(function() {
 
 	/* --- Fin Articulos ---- */
 	$("#inicio").on("click", function() {
-
+		clearInfo();
 		var salida = "";
 
 		$("#main").html(salida);

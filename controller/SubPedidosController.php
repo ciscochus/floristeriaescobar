@@ -168,6 +168,35 @@ if(isset($_POST['accion'])){
             return null;
        }
      }
+     else if ($accion == 'eliminar'){
+           $idSubPedido = null;
+           if(isset($_POST['idSubPedido']) && $_POST['idSubPedido']!=""){
+                $idSubPedido  = $_POST['idSubPedido'];
+           }
+           
+           if($idSubPedido != null){
+               $subpedidoDao = new SubpedidoDao();
+               
+               $subPedidos = $subpedidoDao->getSubpedidoBy("idSubPedido", $idSubPedido);
+               $idPedido = null;
+               
+               $subpedido = new SubPedido();
+               $subpedido = $subPedidos[0];
+               $idPedido = $subpedido->getIdPedido();
+               
+               $listaSubpedidos = $subpedidoDao->getSubpedidoBy("idPedido", $idPedido);
+                
+               $result = $subpedidoDao->delete($subpedido);
+               
+               if(count($listaSubpedidos)== 1 && $result){
+                   $result = $subpedidoDao->deletePedido($idPedido);
+               }
+               
+                header("Content-Type: application/json", true);
+                echo(json_encode(array('mensaje' => $result)));
+                return null;
+           }
+     }
     
     
 }

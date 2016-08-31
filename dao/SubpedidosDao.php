@@ -115,11 +115,33 @@ class SubpedidoDao extends Dao{
     
     
     public function delete(SubPedido $subpedido){
-        this.deleteById($subpedido->getIdSubPedido());
+        
+        $idPedido = $subpedido->getIdPedido();
+        $idSubPedido = $subpedido->getIdSubPedido();
+        
+        /*Cuando eliminamos un subpedido hay que hacerlo en cascada, es decir, hay que eliminar primero las tuplas de la tabla compraarticulo y despues el subpedido en si*/
+        //eliminamos las tuplas de la tabla compraarticulo
+        
+        $query="DELETE FROM compraarticulo WHERE compraarticulo.idSubPedido = '.$idSubPedido.'";
+        $resultado=$this->executeQuery($query);
+        
+        if($resultado){
+          //eliminamos las tuplas de la tabla subpedido
+           $resultado = $this->deleteById($subpedido->getIdSubPedido());
+           return $resultado;
+        }
+        
+        return false;
     }
     
-    public function deleteById($id){     
+    public function deleteById($id){
         return $this->deleteBy("idSubPedido", $id);    
+    }
+    
+    public function deletePedido($idPedido){
+        $query="DELETE FROM pedido WHERE pedido.idPedido = '.$idPedido.'";
+        $resultado=$this->executeQuery($query);
+        return $resultado;
     }
 }
 

@@ -23,7 +23,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- notifIt -->
-    <script type="text/javascript" src="view/js/notifIt.min.js"></script>
+    <script type="text/javascript" src="view/js/notifIt.js"></script>
     <link rel="stylesheet" type="text/css" href="view/css/notifIt.css">
     <style type="text/css">
 body

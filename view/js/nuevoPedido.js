@@ -169,6 +169,7 @@ $(document).ready(function(){
 					$("#busqueda-articulo").removeClass("hidden");
 					$("#lista-articulos").removeClass("hidden");
 					$("#panel-entrega").removeClass("hidden");
+					$("#botonera").removeClass("hidden");
 				}
 				else{
 					if($("#busqueda-articulo").hasClass("hidden")==false)
@@ -190,6 +191,11 @@ $(document).ready(function(){
 	$(document).on("click",".elimArticulo",function(event){
 		event.preventDefault();
 		$(this).parents("tr").remove();
+	});
+	
+	$(document).on("click","#eliminarPedido",function(event){
+		event.preventDefault();
+		eliminarPedido();
 	});
 	
 	$(document).on("keyup paste","#tablaArticulos .articulo .cantidad",function(){
@@ -362,6 +368,10 @@ function getInfo(){
 	console.log(info);
 }
 
+function clearInfo(){
+	info = new Array();
+}
+
 
 /* Crear pedido */
 function nuevoPedido(idCliente){
@@ -494,6 +504,66 @@ function guardarPedido(){
 	
 }
 /* Fin Guardar pedido */
+
+/* Eliminar pedido */
+
+
+
+function eliminarPedido(){
+	
+	var myCallback = function(choice){
+		if(choice){
+			if(info.hasOwnProperty("subpedido")){
+				var id = info["subpedido"];
+				
+				$.ajax({
+				  async: false,
+		          url: "../controller/SubPedidosController.php",
+		          type: "POST",
+		          dataType: "json",
+		          data: {
+		          	accion:"eliminar",
+		            idSubPedido: id
+		          },
+		          success: function( data ) {
+		          	if(data.mensaje == true){
+		          		
+		          		$("#inicio").click();
+		          		notif({
+								msg : "El pedido se ha eliminado correctamente.",
+								type : "success",
+								position : "center"
+							});
+		          	}            
+		          },
+		          error: function(XMLHttpRequest, textStatus, errorThrown) { 
+			        console.log("ERROR: "+XMLHttpRequest.responseText); 
+			        notif({
+								msg : "Se ha producido un error al eliminar el pedido.",
+								type : "error",
+								position : "center"
+							});
+			    }  
+		        });
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	notif_confirm({
+		'message': '¿Está seguro que desea eliminar el pedido?',
+		'textaccept': 'Eliminar',
+		'textcancel': 'Cancelar',
+		'fullscreen': true,
+		'callback': myCallback
+	});
+	
+	
+}
+/* Fin Eliminar pedido */
 
 /* Cargar multiples subpedidos */
 //para los pedidos de tipo 2 y 3 que pueden tener varios subpedidos

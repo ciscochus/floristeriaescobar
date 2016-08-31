@@ -102,6 +102,15 @@ if(isset($_POST['accion'])){
             echo(json_encode(array('mensaje' => "false")));
           }
      }
+     else if($accion == "eliminar"){
+        (int)$idPedido = (int)$_POST['idPedido'];
+         if($idPedido != null){
+            $pedido=new Pedido();
+            $pedido->deleteByIdPedido($idPedido);
+         }
+     }
     
 }
+
+
 ?>
