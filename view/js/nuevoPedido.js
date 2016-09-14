@@ -230,6 +230,21 @@ $(document).ready(function(){
 		$("#busqueda-articulo").removeClass("hidden");
 		$("#panel-entrega").removeClass("hidden");
 	});
+        
+        // -- Nota de entrega
+        $(document).on("click","#botonera #resguardoPedido",function(){
+            
+            var ties = '';
+            var clienteSelec = 'prueba';
+            
+            if($("#tiesto").prop("checked")){
+		$ties = "1";
+            }else{
+                $ties = "0";
+            }
+            
+            window.open ('../informes/resguardo.php?descripcion='+ $("#descr").val() +'&fecha='+ $("#fecEntrega").val() +'&orden='+ $("#ordLlegada").val() +'&cliente='+ clienteSelec.value +'&ties=' + ties.value +'', '_blank');
+	});
  });
  
  

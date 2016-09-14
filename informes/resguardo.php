@@ -5,86 +5,56 @@
 require_once("../controller/ClientesController.php");
 
 
-    $fechaInsertada = filter_input(INPUT_GET, 'fechaReserva');
+    $fechaInsertada = filter_input(INPUT_GET, 'fecha');
+    $cliente = filter_input(INPUT_GET, 'cliente');
+    $orden = filter_input(INPUT_GET, 'orden');
+    $tiesto = filter_input(INPUT_GET, 'tiesto');
+    $descripcion = filter_input(INPUT_GET, 'descripcion');
     
-    $dao=new Dao();
-    $sentencia ="SELECT cliente.idCliente, CONCAT(cliente.nombre, ' ', cliente.apellido_1, ' ', cliente.apellido_2) AS nombre, subpedido.idSubPedido, subpedido.diaEntrega, subpedido.numOrden, subpedido.tiesto, subpedido.descripcion, subpedido.estadoAlmacen
-                        FROM    cliente, 
-                                pedido, 
-                                subpedido 
-                        WHERE   pedido.idCliente = cliente.idCliente AND 
-                                subpedido.idPedido = pedido.idPedido AND 
-                                subpedido.tipoEncargo = '3' and subpedido.diaEntrega = '$fechaInsertada'
-                        ORDER BY subpedido.numOrden";
-    $query=$dao->executeQuery($sentencia);
-    
-    $numeroLineas = 0;    
-    if ($query){
-        while ($row = $query->fetch_object()) {
-           $result[]=$row;
-           $numeroLineas++;
-        }
-    }
+    $date = new DateTime($fechaInsertada); //Auxiliar para mostrar la fecha con formato español
+
     
     $content = '<page><html>';
     $content = $content."<body>";
     $content = $content."<h4 align='center'>Flores Escobar<br/><br/>";
-    $content = $content."Resguardo: nombreCliente<br/><br/>Fecha recogida: fechaPedido  --- Orden recogida: numOrden</h4><br/>";
+    $content = $content."Resguardo: ".$cliente."<br/><br/>Fecha recogida: ".$date->format('d-m-Y')."  --- Orden recogida: ".$orden."</h4><br/>";
     
     
-//    if ($numeroLineas == 0){
-//        $content = $content."<h4>No hay datos para la fecha solicitada</h4>";      
-//    }else{
-        $content = $content."<table border='0.5' width='500'>";
-    
-//        foreach ($result as $item) {
+    $content = $content."<table border='0.5' width='500'>";
 
-            if ($item->tiesto == 0 || $item->tiesto == NULL){
-                $auxTiesto = 'No';
-            }else{
-                $auxTiesto = 'Si';
-            }
+    if ($tiesto == 0 || $tiesto == NULL || $tiesto == ''){
+        $auxTiesto = 'No';
+    }else{
+        $auxTiesto = 'Si';
+    }
 
-            $content = $content."<tr><td>
-                <br/>
-                <div align='center'>
-                <strong>Descripción</strong><br/><br/>
-                        <textarea disabled rows='7' cols='55'>".$item->descripcion."</textarea>
+    $content = $content."<tr><td>
+    <br/>
+    <div align='center'>
+    <strong>Descripción</strong><br/><br/>
+        <textarea disabled rows='7' cols='55'>".$descripcion."</textarea>
+    </div><br/>
+    <div><strong>  ¿Entrega tiesto?</strong> ".$auxTiesto."</div><br/>
+    </td></tr>"; 
 
-                </div><br/>
-                    <div><strong>  ¿Entrega tiesto?</strong> ".$auxTiesto."</div><br/>
-            </td></tr>"; 
-
-//        }
-        $content = $content."</table>";
-        
-        $content = $content."<br/><br/><br/>"; //Separador de las copias
-        
-        $content = $content."<h4 align='center'>Flores Escobar<br/><br/>";
-        $content = $content."Resguardo: nombreCliente<br/><br/>Fecha recogida: fechaPedido  --- Orden recogida: numOrden</h4><br/>";
+    $content = $content."</table>";    
+    $content = $content."<br/><br/><br/>"; //Separador de las copias
+    $content = $content."<h4 align='center'>Flores Escobar<br/><br/>";
+    $content = $content."Resguardo: ".$cliente."<br/><br/>Fecha recogida: ".$date->format('d-m-Y')."  --- Orden recogida: ".$orden."</h4><br/>";
     
     
-//    if ($numeroLineas == 0){
-//        $content = $content."<h4>No hay datos para la fecha solicitada</h4>";      
-//    }else{
-        $content = $content."<table border='0.5' width='500'>";
-    
-//        foreach ($result as $item) {
+    $content = $content."<table border='0.5' width='500'>";
+    $content = $content."<tr><td>
+        <br/>
+        <div align='center'>
+        <strong>Descripción</strong><br/><br/>
+            <textarea disabled rows='7' cols='55'>".$descripcion."</textarea>
+        </div><br/>
+        <div><strong>  ¿Entrega tiesto?</strong> ".$auxTiesto."</div><br/>
+        </td></tr>"; 
 
+    $content = $content."</table>";
 
-            $content = $content."<tr><td>
-                <br/>
-                <div align='center'>
-                <strong>Descripción</strong><br/><br/>
-                        <textarea disabled rows='7' cols='55'>".$item->descripcion."</textarea>
-
-                </div><br/>
-                    <div><strong>  ¿Entrega tiesto?</strong> ".$auxTiesto."</div><br/>
-            </td></tr>"; 
-
-//        }
-        $content = $content."</table>";
-//    }
     $content = $content."</body></html></page>";
 
 
