@@ -18,7 +18,7 @@ require_once("../model/Cliente.php");
                         subpedido.tipoEncargo = 1 AND
                         compraarticulo.idSubPedido = subpedido.idSubPedido AND
                         compraarticulo.idArticulo = articulo.idArticulo AND
-                        articulo.abreviatura IN ('CLB', 'CLR', 'CLA', 'CLV', 'GLB', 'GLR', 'GLS', 'PA', 'MB', 'MA', 'LIL', 'RR', 'RB', 'RRO')
+                        articulo.abreviatura IN ('CLB', 'CLR', 'CLA', 'CLV', 'CLRS', 'GLB', 'GLR', 'GLS', 'PA', 'MB', 'MA', 'LIL', 'RR', 'RB', 'RRO')
                         
             ORDER BY    cliente.apellido_1, 
                         cliente.apellido_2, 
@@ -53,8 +53,8 @@ require_once("../model/Cliente.php");
             <th width='35'>&nbsp; Nº </th>
             <th width='250'>&nbsp; Cliente</th>";
             
-        $listaArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);    
-        $totalArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);
+        $listaArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "CLRS" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);    
+        $totalArticulos = array("CLB" => 0, "CLR" => 0, "CLR" => 0, "CLA" => 0, "CLV" => 0, "CLRS" => 0, "GLB" => 0, "GLR" => 0, "GLR" => 0, "GLS" => 0, "PA" => 0, "MB" => 0, "MA" => 0, "LIL" => 0, "RR" => 0, "RB" => 0, "RRO" => 0);
         
         foreach($listaArticulos as $abreviatura=>$cantidad)
         {
